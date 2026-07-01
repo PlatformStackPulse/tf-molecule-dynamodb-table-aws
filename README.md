@@ -1,6 +1,17 @@
 # tf-molecule-dynamodb-table-aws
 
-DynamoDB table with encryption, PITR, and TTL support.
+A composed DynamoDB table molecule wrapping the `tf-atom-dynamodb-table-aws` atom with `tf-label` naming, KMS server-side encryption, point-in-time recovery, and TTL support.
+
+## Features
+
+- **Consistent naming & tagging** via the `tf-label` (`module.this`) context, with a single `enabled` switch to create or suppress all resources.
+- **Flexible billing** — `PAY_PER_REQUEST` (default) or `PROVISIONED` with configurable `read_capacity` / `write_capacity`.
+- **Composite keys** — configurable `hash_key`, optional `range_key`, and arbitrary attribute definitions.
+- **Secondary indexes** — supports both global (`global_secondary_indexes`) and local (`local_secondary_indexes`) secondary indexes.
+- **Server-side encryption** with an optional customer-managed KMS key (`kms_key_arn`).
+- **Point-in-time recovery** enabled by default for backup/restore.
+- **TTL support** — optional time-to-live expiry via `ttl_enabled` and `ttl_attribute_name`.
+- **Deletion protection** — optional guard against accidental table deletion.
 
 ## Usage
 
@@ -8,17 +19,23 @@ DynamoDB table with encryption, PITR, and TTL support.
 module "table" {
   source = "git::https://github.com/PlatformStackPulse/tf-molecule-dynamodb-table-aws.git?ref=v1.0.0"
 
-  namespace   = "psp"
-  environment = "prod"
-  name        = "orders"
+  # tf-label identity
+  namespace = "psp"
+  stage     = "prod"
+  name      = "orders"
 
+  # Required inputs
   hash_key  = "pk"
   range_key = "sk"
 
   dynamodb_attributes = [
     { name = "pk", type = "S" },
-    { name = "sk", type = "S" }
+    { name = "sk", type = "S" },
   ]
+
+  # Optional
+  server_side_encryption_enabled = true
+  point_in_time_recovery_enabled = true
 }
 ```
 
@@ -91,3 +108,13 @@ No resources.
 | <a name="output_table_id"></a> [table\_id](#output\_table\_id) | ID of the DynamoDB table |
 | <a name="output_table_name"></a> [table\_name](#output\_table\_name) | Name of the DynamoDB table |
 <!-- END_TF_DOCS -->
+
+## Tests
+
+Plan-only unit tests run against a mocked AWS provider (no real AWS credentials or calls):
+
+```bash
+terraform init -backend=false && terraform test -test-directory=tests/unit
+```
+
+The unit suite lives in [`tests/unit/`](tests/unit/) and is also runnable via `make test-unit`.
