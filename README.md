@@ -1,5 +1,14 @@
 # tf-molecule-dynamodb-table-aws
 
+[![Terraform Format](https://img.shields.io/badge/terraform-fmt-blue?logo=terraform)](https://github.com/PlatformStackPulse/tf-molecule-dynamodb-table-aws/actions)
+[![Terraform Validate](https://img.shields.io/badge/terraform-validate-blue?logo=terraform)](https://github.com/PlatformStackPulse/tf-molecule-dynamodb-table-aws/actions)
+[![TFLint](https://img.shields.io/badge/tflint-passing-brightgreen?logo=terraform)](https://github.com/PlatformStackPulse/tf-molecule-dynamodb-table-aws/actions)
+[![Terraform Test](https://img.shields.io/badge/tests-2%20passed-brightgreen?logo=terraform)](https://github.com/PlatformStackPulse/tf-molecule-dynamodb-table-aws/actions)
+[![Security Scan](https://img.shields.io/badge/trivy-passing-brightgreen?logo=aqua)](https://github.com/PlatformStackPulse/tf-molecule-dynamodb-table-aws/actions)
+[![Conventional Commits](https://img.shields.io/badge/commits-conventional-blue?logo=conventionalcommits)](https://conventionalcommits.org)
+[![Documentation](https://img.shields.io/badge/docs-terraform--docs-blue?logo=readthedocs)](https://github.com/PlatformStackPulse/tf-molecule-dynamodb-table-aws/actions)
+[![License](https://img.shields.io/badge/license-MIT-blue?logo=opensourceinitiative)](LICENSE)
+
 A composed DynamoDB table molecule wrapping the `tf-atom-dynamodb-table-aws` atom with `tf-label` naming, KMS server-side encryption, point-in-time recovery, and TTL support.
 
 ## Features
