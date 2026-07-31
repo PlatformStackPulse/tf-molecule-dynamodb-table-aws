@@ -1,6 +1,6 @@
 # Molecule: DynamoDB Table with KMS Encryption
 module "table" {
-  source = "git::https://github.com/PlatformStackPulse/tf-atom-dynamodb-table-aws.git?ref=073372fef82a4e9100b74fc78db8d5db499076db"
+  source = "git::https://github.com/PlatformStackPulse/tf-atom-dynamodb-table-aws.git?ref=f10c72f7cbb600962ab24d00ab6489163346af0c"
 
   context                        = module.this.context
   billing_mode                   = var.billing_mode
@@ -17,4 +17,6 @@ module "table" {
   ttl_attribute_name             = var.ttl_attribute_name
   ttl_enabled                    = var.ttl_enabled
   deletion_protection_enabled    = var.deletion_protection_enabled
+  stream_enabled                 = var.stream_enabled
+  stream_view_type               = var.stream_view_type
 }

@@ -82,3 +82,15 @@ variable "deletion_protection_enabled" {
   type        = bool
   default     = false
 }
+
+variable "stream_enabled" {
+  description = "Enable DynamoDB Streams on the table"
+  type        = bool
+  default     = false
+}
+
+variable "stream_view_type" {
+  description = "Stream view type: KEYS_ONLY, NEW_IMAGE, OLD_IMAGE, NEW_AND_OLD_IMAGES; required when stream_enabled"
+  type        = string
+  default     = null
+}
