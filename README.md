@@ -64,7 +64,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_table"></a> [table](#module\_table) | git::https://github.com/PlatformStackPulse/tf-atom-dynamodb-table-aws.git | 073372fef82a4e9100b74fc78db8d5db499076db |
+| <a name="module_table"></a> [table](#module\_table) | git::https://github.com/PlatformStackPulse/tf-atom-dynamodb-table-aws.git | f10c72f7cbb600962ab24d00ab6489163346af0c |
 | <a name="module_this"></a> [this](#module\_this) | git::https://github.com/PlatformStackPulse/tf-label.git | v1.0.0 |
 
 ### Resources
@@ -101,6 +101,8 @@ No resources.
 | <a name="input_regex_replace_chars"></a> [regex\_replace\_chars](#input\_regex\_replace\_chars) | Terraform regular expression (regex) string.<br/>Characters matching the regex will be removed from the ID elements.<br/>If not set, `"/[^a-zA-Z0-9-]/"` is used to remove all characters other than hyphens, letters and digits. | `string` | `null` | no |
 | <a name="input_server_side_encryption_enabled"></a> [server\_side\_encryption\_enabled](#input\_server\_side\_encryption\_enabled) | Enable server-side encryption with KMS | `bool` | `true` | no |
 | <a name="input_stage"></a> [stage](#input\_stage) | ID element. Usually used to indicate role, e.g. 'prod', 'staging', 'source', 'build', 'test', 'deploy', 'release'. | `string` | `null` | no |
+| <a name="input_stream_enabled"></a> [stream\_enabled](#input\_stream\_enabled) | Enable DynamoDB Streams on the table | `bool` | `false` | no |
+| <a name="input_stream_view_type"></a> [stream\_view\_type](#input\_stream\_view\_type) | Stream view type: KEYS\_ONLY, NEW\_IMAGE, OLD\_IMAGE, NEW\_AND\_OLD\_IMAGES; required when stream\_enabled | `string` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Additional tags (e.g. `{'BusinessUnit': 'XYZ'}`).<br/>Neither the tag keys nor the tag values will be modified by this module. | `map(string)` | `{}` | no |
 | <a name="input_tenant"></a> [tenant](#input\_tenant) | ID element. A customer identifier, indicating who this instance of a resource is for. | `string` | `null` | no |
 | <a name="input_ttl_attribute_name"></a> [ttl\_attribute\_name](#input\_ttl\_attribute\_name) | Name of the TTL attribute | `string` | `""` | no |
@@ -113,6 +115,7 @@ No resources.
 |------|-------------|
 | <a name="output_enabled"></a> [enabled](#output\_enabled) | Whether the module is enabled |
 | <a name="output_hash_key"></a> [hash\_key](#output\_hash\_key) | Hash key of the table |
+| <a name="output_stream_arn"></a> [stream\_arn](#output\_stream\_arn) | ARN of the DynamoDB table stream (null when streams are disabled) |
 | <a name="output_table_arn"></a> [table\_arn](#output\_table\_arn) | ARN of the DynamoDB table |
 | <a name="output_table_id"></a> [table\_id](#output\_table\_id) | ID of the DynamoDB table |
 | <a name="output_table_name"></a> [table\_name](#output\_table\_name) | Name of the DynamoDB table |

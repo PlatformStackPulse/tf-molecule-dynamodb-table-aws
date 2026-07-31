@@ -22,3 +22,8 @@ output "hash_key" {
   description = "Hash key of the table"
   value       = module.table.hash_key
 }
+
+output "stream_arn" {
+  description = "ARN of the DynamoDB table stream (null when streams are disabled)"
+  value       = module.table.stream_arn
+}

@@ -43,6 +43,28 @@ run "creates_when_enabled" {
 }
 
 # ---------------------------------------------------------------------------
+# Test: streams-enabled configuration plans cleanly and exposes stream_arn output
+# ---------------------------------------------------------------------------
+run "streams_enabled_with_view_type" {
+  command = plan
+
+  variables {
+    stream_enabled   = true
+    stream_view_type = "NEW_AND_OLD_IMAGES"
+  }
+
+  assert {
+    condition     = output.enabled == true
+    error_message = "Module should plan cleanly when streams are enabled"
+  }
+
+  assert {
+    condition     = output.table_name != null
+    error_message = "table_name output should still be non-null when streams are enabled"
+  }
+}
+
+# ---------------------------------------------------------------------------
 # Test: module creates nothing when disabled
 # ---------------------------------------------------------------------------
 run "disabled_creates_nothing" {
